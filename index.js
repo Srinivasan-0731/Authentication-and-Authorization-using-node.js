@@ -14,8 +14,8 @@ connectDB();
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', authRoutes); // Mount auth routes at root
-app.use('/api/auth', userRoutes);  // Mount user routes at root
+app.use('/', authRoutes); // Mount auth routes at root
+app.use('/', userRoutes);  // Mount user routes at root
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
