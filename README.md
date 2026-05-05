@@ -1,23 +1,167 @@
-# User Authentication and Authorization with JWT
+# User Authentication and Authorization with Bearer Token
 
-This project implements user authentication and authorization using Bearer tokens with Node.js, Express.js, Mongoose, and JWT. The application follows the MVC pattern and includes API documentation using Postman.
+A REST API built with Node.js, Express, MongoDB, and JWT for user authentication and authorization.
 
-## Features
-- User registration and login.
-- Password hashing with bcryptjs.
-- JWT-based authentication.
-- Protected routes for authorized users.
-- API documentation in Postman.
+---
+
+## 🛠 Tech Stack
+
+- **Node.js** — Runtime
+- **Express.js** — Web Framework
+- **MongoDB Atlas** — Database
+- **Mongoose** — ODM
+- **JWT (jsonwebtoken)** — Token Authentication
+- **bcryptjs** — Password Hashing
+- **dotenv** — Environment Variables
+
+---
+
+
+## Setup & Installation
+
+### 1. Clone the Repository
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Create `.env` File
+Create a `.env` file in the root folder:
+```dotenv
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xsxf8tm.mongodb.net
+JWT_SECRET=your_secret_key
+```
+
+### 4. Run the Server
+```bash
+node index.js
+```
+
+Terminal
+```
+Database Connected
+Server running on port 5000
+```
+
+---
 
 ## API Endpoints
-- **POST** `/register` - Register a new user.
-- **POST** `/login` - Login and receive a JWT token.
-- **GET** `/profile` - Get user information (protected route).
 
-## Tech Stack
-- Node.js
-- Express.js
-- Mongoose (MongoDB)
-- bcryptjs
-- JWT
-- Postman
+### Auth Routes (No Token Required)
+
+#### Register
+```
+POST /api/auth/register
+```
+**Request Body:**
+```json
+{
+  "username": "testuser",
+  "email": "test@gmail.com",
+  "password": "test123"
+}
+```
+**Response:**
+```json
+{
+  "msg": "User registered successfully"
+}
+```
+
+---
+
+#### Login
+```
+POST /api/auth/login
+```
+**Request Body:**
+```json
+{
+  "email": "test@gmail.com",
+  "password": "test123"
+}
+```
+**Response:**
+```json
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "user_id",
+    "email": "test@gmail.com"
+  }
+}
+```
+
+---
+
+### User Routes (Token Required)
+
+#### Get Profile
+```
+GET /api/user/profile
+```
+**Headers:**
+```
+Authorization: Bearer <your_token>
+```
+**Response:**
+```json
+{
+  "_id": "user_id",
+  "username": "testuser",
+  "email": "test@gmail.com"
+}
+```
+
+---
+
+## How JWT Works
+
+```
+1. User registers   → Password hashed & saved to MongoDB
+2. User logs in     → JWT Token generated & returned
+3. User hits /profile → Token verified → User data returned
+```
+
+---
+
+## Deployment (Render.com)
+
+1. Push code to GitHub
+2. Go to [https://render.com](https://render.com) → New Web Service
+3. Connect GitHub repo
+4. Add Environment Variables:
+   - `MONGO_URI`
+   - `JWT_SECRET`
+   - `PORT`
+5. Build Command: `npm install`
+6. Start Command: `node index.js`
+
+---
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `PORT` | Server port (default: 5000) |
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `JWT_SECRET` | Secret key for JWT signing |
+
+---
+
+## .gitignore
+
+```
+.env
+node_modules
+```
+
+---
+
