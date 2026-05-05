@@ -4,7 +4,7 @@ A REST API built with Node.js, Express, MongoDB, and JWT for user authentication
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Node.js** — Runtime
 - **Express.js** — Web Framework
