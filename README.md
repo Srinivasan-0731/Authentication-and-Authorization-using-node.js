@@ -2,7 +2,7 @@
 
 A REST API built with Node.js, Express, MongoDB, and JWT for user authentication and authorization.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://your-postman-collection-link-here)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/50998807/2sBXqMHzTA)
 
 ---
 
@@ -149,24 +149,24 @@ Authorization: Bearer <your_token>
 ## How JWT Works
 
 ```
-1. User registers    →  Password hashed & saved to MongoDB
-2. User logs in      →  JWT Token generated & returned
+1. User registers     →  Password hashed & saved to MongoDB
+2. User logs in       →  JWT Token generated & returned
 3. User hits /profile →  Token verified → User data returned
 ```
 
 ---
 
-## API Testing (Postman)
+## Postman API Documentation
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://sp2392546-6144432.postman.co/workspace/Srinivasan-P's-Workspace~a5670e24-0370-49e6-811c-b70632fbc2ac/collection/50998807-f3c4ed4a-c3fe-45dc-a527-91c721775f38?action=share&creator=50998807)
+Test all endpoints using the published Postman documentation:
 
-> Click the button above to import the Postman collection and test all endpoints directly.
+ [View API Documentation](https://documenter.getpostman.com/view/50998807/2sBXqMHzTA)
 
-**How to get your Postman link:**
-1. Open your collection in Postman
-2. Click the **three dots (...)** next to the collection name
-3. Select **Share** → **Get public link**
-4. Replace the placeholder URL above with your link
+### How to Test:
+
+1. **Register** a new user using `POST /api/auth/register`
+2. **Login** using `POST /api/auth/login` → Copy the `token` from response
+3. **Get Profile** using `GET /api/user/profile` → Add `Authorization: Bearer <token>` in Headers
 
 ---
 
